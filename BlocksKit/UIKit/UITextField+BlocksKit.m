@@ -96,6 +96,51 @@
 	return ret;
 }
 
+- (BOOL)keyboardInputChangedSelection:(UITextField *)textField
+{
+    BOOL ret = YES;
+    if ([textField isKindOfClass:NSClassFromString(@"TUIEmojiSearchTextField")]) {
+        return ret;
+    }
+    id realDelegate = self.realDelegate;
+    if (realDelegate && [realDelegate respondsToSelector:@selector(keyboardInputChangedSelection:)])
+        ret = [realDelegate keyboardInputChangedSelection:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
+}
+
+- (BOOL)keyboardInputChanged:(UITextField *)textField
+{
+    BOOL ret = YES;
+    if ([textField isKindOfClass:NSClassFromString(@"TUIEmojiSearchTextField")]) {
+        return ret;
+    }
+    id realDelegate = self.realDelegate;
+    if (realDelegate && [realDelegate respondsToSelector:@selector(keyboardInputChanged:)])
+        ret = [realDelegate keyboardInputChanged:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
+}
+
+- (BOOL)keyboardInputShouldDelete:(UITextField *)textField
+{
+    BOOL ret = YES;
+    if ([textField isKindOfClass:NSClassFromString(@"TUIEmojiSearchTextField")]) {
+        return ret;
+    }
+    id realDelegate = self.realDelegate;
+    if (realDelegate && [realDelegate respondsToSelector:@selector(keyboardInputShouldDelete:)])
+        ret = [realDelegate keyboardInputShouldDelete:textField];
+    BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
+    if (block)
+        ret &= block(textField);
+    return ret;
+}
+
 @end
 
 #pragma mark - Category
